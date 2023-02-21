@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+
+  url-shorteners:
+    build: ./
+    container_name: url-shorteners
+    restart: unless-stopped
+    environment:
+      - REDIS_HOST=url-shorteners-db
+      - REDIS_PASSWORD=pass-redis
+      - REDIS_PORT=6379
+      - REDIS_DB=8
+      - TZ=Asia/Bangkok
+      - PYTHONUNBUFFERED=1
+
+  url-shorteners-db:
+    image: redis:7.0.8-alpine
+    container_name: url-shorteners-db
+    restart: unless-stopped
+    expose:
+      - 6379
+    command: redis-server --requirepass pass-redis
+    environment:
+     - REDIS_REPLICATION_MODE=master
