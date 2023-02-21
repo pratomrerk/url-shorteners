@@ -17,6 +17,7 @@ redis_host = os.environ.get('REDIS_HOST', 'localhost')
 redis_port = os.environ.get('REDIS_PORT', 6379)
 redis_db = os.environ.get('REDIS_DB', 8)
 redis_password = os.environ.get('REDIS_PASSWORD', '')
+BASE_URL = os.environ.get('BASE_URL', 'http://localhost:7788')
 
 def random_string(length):
     all_chars = string.digits + string.ascii_letters + string.ascii_uppercase
@@ -86,7 +87,7 @@ def new_url():
     
     expired = int(dt.datetime.now().timestamp()) + expire
     data = {
-        'short_url': f'{request.url_root}{url_key}',
+        'short_url': f'{BASE_URL}/{url_key}',
         'url': url,
         'count': 0,
         'expire': expired
@@ -95,7 +96,7 @@ def new_url():
     r.set(url_key, json.dumps(data), ex=expire)
 
     r.close()
-    data['check'] = f'{request.url_root}check?url-key={url_key}'
+    data['check'] = f'{BASE_URL}/check?url-key={url_key}'
     return jsonify(data)
 
 @app.route('/check', methods=['GET'])
