@@ -51,7 +51,7 @@ def get(url_key):
 def new_url():
 
     url = request.args.get('url', None)
-    expire = request.args.get('expire', 60*60*24*7) # 7 days by default
+    expire = request.args.get('expire', 60*60*24*30) # 30 days by default
     if url is None:
         return jsonify({
             'error': 'URL is required'
