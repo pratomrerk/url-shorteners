@@ -1,11 +1,12 @@
 import os
-from flask import Flask, redirect, jsonify, request
+from flask import Flask, redirect, jsonify, request, abort
 from flask_cors import CORS
 from redis import Redis
 import datetime as dt
 import string
 import random
 import json
+from urllib.parse import urlparse
 
 # pratomrerk
 # Update 21/02/2023
@@ -23,6 +24,10 @@ def random_string(length):
 
 def connect_redis():
     return Redis(host=redis_host, port=redis_port, db=redis_db, password=redis_password) 
+
+@app.route('/', methods=['GET'])
+def index():
+    return abort(404)
 
 @app.route('/<url_key>', methods=['GET'])
 def get(url_key):
@@ -49,6 +54,19 @@ def new_url():
     if url is None:
         return jsonify({
             'error': 'URL is required'
+        }), 400
+
+    # check url is valid
+    try:
+        result = urlparse(url)
+        if not all([result.scheme, result.netloc]):
+            return jsonify({
+                'error': 'Invalid URL'
+            }), 400
+
+    except ValueError:
+        return jsonify({
+            'error': 'Invalid URL'
         }), 400
 
     if expire is not None:
