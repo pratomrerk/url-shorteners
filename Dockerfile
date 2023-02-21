@@ -3,7 +3,7 @@ FROM python:3.10-slim
 RUN python -m pip install --upgrade pip
 WORKDIR /app
 COPY . /app
-RUN pip install Flask Flask-Cors redis gunicorn[gevent] emoji
+RUN pip install Flask Flask-Cors redis gunicorn[gevent]
 #RUN pip install -r requirements.txt
 #RUN pip install gunicorn[gevent]
 
