@@ -23,7 +23,7 @@ Response
 
 Check Information url-key
 ```bash
-curl --location --request GET 'http://127.0.0.1:7788/check?url-key=TkUXJ7IZ' \
+curl --location --request GET 'http://127.0.0.1:7788/check?url-key=TkUXJ7IZ'
 ```
 Response
 ```json
