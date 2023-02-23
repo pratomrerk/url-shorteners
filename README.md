@@ -14,7 +14,7 @@ Response
 ```json
 {
     "check": "http://127.0.0.1:7788/check?url-key=TkUXJ7IZ",
-    "count": 1,
+    "count": 2,
     "expire": 1677575761,
     "short_url": "http://127.0.0.1:7788/TkUXJ7IZ",
     "url": "https://google.com"
