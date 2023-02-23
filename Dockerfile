@@ -7,7 +7,7 @@ RUN pip install Flask Flask-Cors redis gunicorn[gevent]
 #RUN pip install -r requirements.txt
 #RUN pip install gunicorn[gevent]
 
-999
+9999
 
 EXPOSE 7788
 #workers = (2*<num_cores>)+1
