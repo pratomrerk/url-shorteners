@@ -11,6 +11,7 @@ docker-compose up -d
 New URL shorteners
 ```bash
 curl --location --request GET 'http://127.0.0.1:7788/new-url?url=https://google.com&expire=315360000'
+# expire is optional
 ```
 ```
 Response
