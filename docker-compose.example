@@ -3,7 +3,10 @@ version: '3.7'
 services:
 
   url-shorteners:
-    build: ./
+    image: url-shorteners:1.0
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: url-shorteners
     restart: unless-stopped
     environment:
