@@ -1,3 +1,6 @@
+# URL Shortener
+Easy to use URL shortener
+
 ## Getting started
 View docker-compose.example for an example to docker-compose.yml and edit the environment variables.
 
